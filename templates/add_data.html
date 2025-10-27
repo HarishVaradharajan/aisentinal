@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Data - AI SENTINEL Database</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold">Enter New Data</h1>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white shadow-lg rounded-lg p-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Please fill out the following form to add new data.</h2>
+
+                <!-- Form -->
+                <form method="POST">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="section" class="block text-gray-700">Section:</label>
+                            <input type="text" id="section" name="section" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div>
+                            <label for="keywords" class="block text-gray-700">Keywords:</label>
+                            <input type="text" id="keywords" name="keywords" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div>
+                            <label for="category" class="block text-gray-700">Category:</label>
+                            <input type="text" id="category" name="category" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div>
+                            <label for="description" class="block text-gray-700">Description:</label>
+                            <textarea id="description" name="description" class="w-full p-3 border border-gray-300 rounded-md" required></textarea>
+                        </div>
+
+                        <div>
+                            <label for="action_taken" class="block text-gray-700">Action Taken:</label>
+                            <input type="text" id="action_taken" name="action_taken" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div>
+                            <label for="similar_case" class="block text-gray-700">Similar Case (Judgment):</label>
+                            <input type="text" id="similar_case" name="similar_case" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div>
+                            <label for="section_desc" class="block text-gray-700">Section Description:</label>
+                            <input type="text" id="section_desc" name="section_desc" class="w-full p-3 border border-gray-300 rounded-md" required>
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-md shadow-md hover:bg-green-700 transition duration-300">
+                                Submit Data
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm">© 2025 AI SENTINEL Database. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

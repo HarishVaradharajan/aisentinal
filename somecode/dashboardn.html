@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Sentinel Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1579127994620-d1a0d72aa1c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .backdrop {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+  <header class="backdrop shadow p-6 flex justify-between items-center relative">
+    <div class="text-center w-full">
+      <h1 class="text-3xl font-bold">AI Sentinel Dashboard</h1>
+      <p class="text-sm text-gray-600">Smart Crime Query & Law Prediction</p>
+    </div>
+    <div class="absolute top-6 right-6 flex items-center space-x-2">
+      <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-3-3.87M4 21v-2a4 4 0 0 1 3-3.87m13-1.13a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM8 7a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"/>
+      </svg>
+      <span class="font-semibold text-gray-800">Harish V</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center space-y-8 py-8">
+
+    <!-- Section 1: About the Project -->
+    <section class="backdrop p-6 rounded-2xl shadow w-full max-w-4xl" data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-2">📌 About the Project</h2>
+      <p class="text-gray-600 mb-4">
+        AI Sentinel is an AI-powered web application designed to assist users in understanding legal concepts and predicting crime-related incidents based on their queries.
+        By leveraging Natural Language Processing (NLP), the system interprets user input and maps it to relevant Indian laws, providing accurate and meaningful insights.
+      </p>
+      <p class="text-gray-600 mb-4">
+        The platform offers features crime pattern detection, and a searchable legal database. Whether you're a student, citizen, or legal professional,
+        AI Sentinel helps you make informed decisions by offering legal references and highlighting potential criminal activity from user input.
+      </p>
+      <ul class="space-y-2 text-gray-700">
+        <li>🔍 <strong>Smart Query Understanding</strong>: similarity to match user queries with legal data.</li>
+        <li>⚖️ <strong>Law Lookup</strong>: Matches relevant IPC sections and other laws based on your input.</li>
+        <li>📊 <strong>Live Query Stats</strong>: Tracks crime prediction and query volume in real-time.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2: Live Quote Slider -->
+    <section class="backdrop p-6 rounded-2xl shadow w-full max-w-4xl" data-aos="fade-right">
+      <div class="mt-6 bg-gray-100 rounded-xl p-4 shadow text-center text-gray-700 relative h-24 flex items-center justify-center">
+        <p id="quoteText" class="italic text-lg transition-opacity duration-500"></p>
+      </div>
+    </section>
+
+    <!-- Section 3: Prediction Output - Image Slider -->
+    <section class="backdrop p-6 rounded-2xl shadow w-full max-w-5xl" data-aos="fade-left">
+      <h2 class="text-2xl font-semibold mb-2">📈 Prediction Output</h2>
+      <p class="text-gray-600 mb-4">Below is the visual representation of predicted statewise crime statistics in India, rotating across key categories.</p>
+      <div class="relative w-full overflow-hidden rounded-xl border p-4 bg-white shadow-inner h-[400px] flex items-center justify-center">
+        <img id="crimeChart" src="{{ url_for('static', filename='img1.png') }}" alt="Crime Chart"
+             class="rounded-md shadow-lg max-h-full transition-opacity duration-700 opacity-100">
+      </div>
+    </section>
+
+    <!-- Section 4: Query Entry Box -->
+    <section class="backdrop p-6 rounded-2xl shadow w-full max-w-4xl" data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-4">📝 Submit Your Query</h2>
+      <form action="/analyze" method="POST" class="space-y-4">
+        <textarea name="user_query" rows="4" placeholder="Type your legal or crime-related query here..."
+                  class="w-full p-4 border border-gray-300 rounded-xl shadow focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+        <button type="submit"
+                class="bg-blue-600 text-white px-6 py-2 rounded-xl shadow hover:bg-blue-700 transition duration-300">
+          Analyze Query
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="backdrop text-center text-sm text-gray-600 py-4 shadow-inner">
+    &copy; 2025 AI Sentinel. All rights reserved.
+  </footer>
+
+  <!-- AOS Animation Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- Quote Slider Script -->
+  <script>
+    const quotes = [
+      { text: "Change is the law of life. And those who look only to the past or present are certain to miss the future.", author: "John F. Kennedy" },
+      { text: "An eye for an eye will make the whole world blind.", author: "Mahatma Gandhi" },
+      { text: "There is no greater tyranny than that which is perpetrated under the shield of the law and in the name of justice.", author: "Montesquieu" },
+      { text: "At his best, man is the noblest of all animals; separated from law and justice he is the worst.", author: "Aristotle" },
+      { text: "We must reject the idea that every time a law's broken, society is guilty rather than the lawbreaker.", author: "Ronald Reagan" },
+      { text: "Justice delayed is justice denied.", author: "William E. Gladstone" },
+      { text: "A right delayed is a right denied.", author: "Martin Luther King Jr." }
+    ];
+
+    let quoteIndex = 0;
+    const quoteElement = document.getElementById('quoteText');
+
+    function showNextQuote() {
+      const quote = quotes[quoteIndex];
+      quoteElement.style.opacity = 0;
+      setTimeout(() => {
+        quoteElement.textContent = `"${quote.text}" — ${quote.author}`;
+        quoteElement.style.opacity = 1;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+      }, 500);
+    }
+
+    showNextQuote();
+    setInterval(showNextQuote, 5000);
+  </script>
+
+  <!-- Chart Slider Script -->
+  <script>
+    const chartImages = [
+      "{{ url_for('static', filename='img1.png') }}",
+      "{{ url_for('static', filename='img2.png') }}",
+      "{{ url_for('static', filename='img3.png') }}"
+    ];
+    let chartIndex = 0;
+    const chartImg = document.getElementById('crimeChart');
+
+    function rotateCharts() {
+      chartImg.style.opacity = 0;
+      setTimeout(() => {
+        chartIndex = (chartIndex + 1) % chartImages.length;
+        chartImg.src = chartImages[chartIndex];
+        chartImg.style.opacity = 1;
+      }, 500);
+    }
+
+    setInterval(rotateCharts, 5000);
+  </script>
+
+</body>
+</html>
